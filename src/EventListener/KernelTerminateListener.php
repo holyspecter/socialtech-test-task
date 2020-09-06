@@ -23,7 +23,6 @@ class KernelTerminateListener
 
     public function onKernelTerminate(TerminateEvent $event): void
     {
-//        dd('in listener');
         $messages = $this->messengerTransport->getSent();
         $handler = $this->messageHandler;
         foreach ($messages as $message) {
