@@ -33,3 +33,19 @@ services:
     App\Repository\UserRepository:
         arguments:
             - '%kernel.project_dir%/db'
+
+    App\Repository\EventRepository:
+        arguments:
+            - '%kernel.project_dir%/db'
+#            - '@SocialTech\SlowStorage'
+
+    SocialTech\StorageInterface:
+        class: SocialTech\SlowStorage
+
+    # should be removed in case of using real queue manager
+    App\EventListener\KernelTerminateListener:
+        arguments:
+            - '@messenger.transport.async'
+            - '@App\MessageHandler\EventHandler'
+        tags:
+            - { name: kernel.event_listener, event: kernel.terminate }

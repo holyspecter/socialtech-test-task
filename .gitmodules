@@ -1,0 +1,3 @@
+[submodule "vendor/socialtechio/slow-storage-emulator"]
+	path = vendor/socialtechio/slow-storage-emulator
+	url = git@github.com:socialtechio/slow-storage-emulator.git

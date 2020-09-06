@@ -26,7 +26,7 @@ abstract class AbstractRepository
         file_put_contents($this->getFilePath($name), json_encode($data));
     }
 
-    private function createFileIfNotExists(string $collectionName): void
+    protected function createFileIfNotExists(string $collectionName): void
     {
         if (!file_exists($this->getFilePath($collectionName))) {
             file_put_contents($this->getFilePath($collectionName), json_encode([]));

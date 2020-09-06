@@ -1,4 +1,9 @@
-index:
+registration:
     path: /users
     controller: App\Controller\RegistrationController::registerAction
+    methods: ['POST']
+
+track_events:
+    path:  /events
+    controller: App\Controller\EventController::trackEventAction
     methods: ['POST']
