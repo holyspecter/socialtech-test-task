@@ -4,8 +4,13 @@ declare(strict_types=1);
 namespace App\Entity;
 
 
-class User implements \JsonSerializable
+use Symfony\Component\Security\Core\User\UserInterface;
+
+class User implements \JsonSerializable, UserInterface
 {
+    /** @var int */
+    private $id;
+
     /** @var string */
     private $firstName;
 
@@ -20,6 +25,18 @@ class User implements \JsonSerializable
 
     /** @var string */
     private $password;
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 
     public function getFirstName(): string
     {
@@ -84,6 +101,7 @@ class User implements \JsonSerializable
     public function jsonSerialize()
     {
         return [
+            'id' => $this->id,
             'first_name' => $this->firstName,
             'last_name' => $this->lastName,
             'nick_name' => $this->nickName,
@@ -91,4 +109,26 @@ class User implements \JsonSerializable
             'password' => $this->password,
         ];
     }
+
+    public function getRoles()
+    {
+        return ['ROLE_USER'];
+    }
+
+    public function getSalt()
+    {
+        return null;
+    }
+
+    public function getUsername()
+    {
+        return $this->nickName;
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
+
 }

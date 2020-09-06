@@ -1,0 +1,47 @@
+security:
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+#        users_in_memory: { memory: null }
+        app_users:
+            id: App\Security\UserProvider
+
+    encoders:
+        App\Entity\User:
+            algorithm: auto
+
+    firewalls:
+        login:
+            pattern: ^/login
+            stateless: true
+            anonymous: true
+            json_login:
+                check_path: /login
+                username_path: 'nick_name'
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+
+        main:
+            anonymous: true
+#            lazy: true
+#            provider: app_users
+            stateless: true
+
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+
+            #            json_login:
+#                check_path: /login
+#                username_path: 'nick_name'
+
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/profile, roles: ROLE_USER }

@@ -3,6 +3,11 @@ registration:
     controller: App\Controller\RegistrationController::registerAction
     methods: ['POST']
 
+login:
+    path: /login
+    controller: App\Controller\SecurityController::loginAction
+    methods: ['POST']
+
 track_events:
     path:  /events
     controller: App\Controller\EventController::trackEventAction
