@@ -9,6 +9,5 @@ class SecurityController
 {
     public function loginAction(Request $request)
     {
-
     }
 }

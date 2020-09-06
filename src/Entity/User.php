@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class User implements \JsonSerializable, UserInterface
@@ -127,6 +126,5 @@ class User implements \JsonSerializable, UserInterface
 
     public function eraseCredentials()
     {
-        
     }
 }
