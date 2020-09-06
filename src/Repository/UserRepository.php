@@ -20,6 +20,26 @@ class UserRepository extends AbstractRepository
         $this->writeCollection(self::COLLECTION_NAME, $users);
     }
 
+    public function createAnonymous(): User
+    {
+        $users = $this->getCollection(self::COLLECTION_NAME);
+
+        $user = (new User())
+            ->setFirstName('anon.')
+            ->setLastName('anon.')
+            ->setNickName(uniqid('', true))
+            ->setAge(0)
+            ->setPassword('');
+
+        $user->setId(count($users) + 1); // @todo: better id generation
+
+        $users[] = $user;
+
+        $this->writeCollection(self::COLLECTION_NAME, $users);
+
+        return $user;
+    }
+
     public function findOneByNickName(string $nickName): ?User
     {
         $users = $this->getCollection(self::COLLECTION_NAME);

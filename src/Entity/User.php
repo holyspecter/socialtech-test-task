@@ -127,8 +127,6 @@ class User implements \JsonSerializable, UserInterface
 
     public function eraseCredentials()
     {
-        // TODO: Implement eraseCredentials() method.
+        
     }
-
-
 }
