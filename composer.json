@@ -57,7 +57,10 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
-        "test": "bin/phpunit"
+        "start-server": "php -S localhost:8001 -t public",
+        "test": "bin/phpunit",
+        "cs-check": "vendor/bin/phpcs --standard=PSR2 src",
+        "cs-fix": "vendor/bin/phpcbf --standard=PSR2 src"
     },
     "conflict": {
         "symfony/symfony": "*"
